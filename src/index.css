@@ -1,3 +1,11 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+.hero-menu {
+    @apply flex items-center gap-2 cursor-pointer text-white text-lg;
+}
+
+.hero-search {
+    @apply flex items-center gap-2 cursor-pointer bg-white w-full p-3;
+}
