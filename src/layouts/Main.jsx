@@ -1,5 +1,5 @@
 import React from "react";
-import NavMenu from "../components/NavMenu";
+import NavMenu from "../components/Common/NavMenu";
 import { Outlet } from "react-router-dom";
 
 const Main = () => {
