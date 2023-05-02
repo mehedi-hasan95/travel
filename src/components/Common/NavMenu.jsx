@@ -8,6 +8,7 @@ import { DateRange } from "react-date-range";
 import "react-date-range/dist/styles.css"; // main style file
 import "react-date-range/dist/theme/default.css"; // theme css file
 import { format } from "date-fns";
+import useCloseOnClickOutside from "../../Hooks/useCloseOnClickOutside";
 
 const NavMenu = () => {
     const { pathname } = useLocation();
@@ -36,6 +37,10 @@ const NavMenu = () => {
             };
         });
     };
+
+    // Close PopUp
+    const [popupRef] = useCloseOnClickOutside(setOpenDate);
+    const [popupRef2] = useCloseOnClickOutside(setOpenOptions);
     return (
         <div className="bg-blue-900">
             <div className="max-w-7xl mx-auto px-5 xl:px-0 relative">
@@ -93,22 +98,27 @@ const NavMenu = () => {
                                     type="text"
                                     name=""
                                     id=""
-                                    className="outline-none"
+                                    className="outline-none w-full"
                                     placeholder="Where you want to go?"
                                 />
                             </span>
-                            <span className="hero-search relative select-none">
-                                <FaRegCalendarAlt className="text-2xl" />
-                                <p
-                                    className="w-full"
+                            <span
+                                className="hero-search relative select-none"
+                                ref={popupRef}
+                            >
+                                <div
+                                    className="w-full flex gap-2"
                                     onClick={() => setOpenDate(!openDate)}
-                                >{`${format(
-                                    date[0].startDate,
-                                    "dd/MM/yy"
-                                )} to ${format(
-                                    date[0].endDate,
-                                    "dd/MM/yy"
-                                )}`}</p>
+                                >
+                                    <FaRegCalendarAlt className="text-2xl" />
+                                    <p>{`${format(
+                                        date[0].startDate,
+                                        "dd/MM/yy"
+                                    )} to ${format(
+                                        date[0].endDate,
+                                        "dd/MM/yy"
+                                    )}`}</p>
+                                </div>
                                 {openDate && (
                                     <DateRange
                                         editableDateInputs={true}
@@ -122,15 +132,21 @@ const NavMenu = () => {
                                     />
                                 )}
                             </span>
-                            <span className="hero-search select-none relative">
-                                <BsFillPersonFill className="text-2xl" />
-                                <p
-                                    className="w-full"
+                            <span
+                                className="hero-search select-none relative"
+                                ref={popupRef2}
+                            >
+                                <div
+                                    className="flex w-full gap-2"
                                     onClick={() => setOpenOptions(!openOptions)}
                                 >
-                                    {options.adault} adult. {options.children}{" "}
-                                    children. {options.room} room
-                                </p>
+                                    <BsFillPersonFill className="text-2xl" />
+                                    <p className="w-full">
+                                        {options.adault} adult.{" "}
+                                        {options.children} children.{" "}
+                                        {options.room} room
+                                    </p>
+                                </div>
                                 {openOptions && (
                                     <div className="absolute top-12 left-0 w-full bg-white">
                                         <div className="flex items-center justify-between mb-5">
