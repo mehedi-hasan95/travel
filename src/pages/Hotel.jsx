@@ -1,7 +1,7 @@
 import React from "react";
 
 const Hotel = () => {
-    return <div>Hotel</div>;
+    return <div></div>;
 };
 
 export default Hotel;

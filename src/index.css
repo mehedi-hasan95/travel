@@ -9,3 +9,7 @@
 .hero-search {
     @apply flex items-center gap-2 cursor-pointer bg-white w-full p-3;
 }
+
+.container-wrap {
+    @apply max-w-7xl mx-auto px-5 xl:px-0;
+}

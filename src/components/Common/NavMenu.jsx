@@ -39,11 +39,11 @@ const NavMenu = () => {
     };
 
     // Close PopUp
-    const [popupRef] = useCloseOnClickOutside(setOpenDate);
-    const [popupRef2] = useCloseOnClickOutside(setOpenOptions);
+    const [dateOpen] = useCloseOnClickOutside(setOpenDate);
+    const [optionOpen] = useCloseOnClickOutside(setOpenOptions);
     return (
         <div className="bg-blue-900">
-            <div className="max-w-7xl mx-auto px-5 xl:px-0 relative">
+            <div className="container-wrap relative">
                 <div className="flex justify-between items-center py-5">
                     <Link to="/" className="text-2xl font-semibold text-white">
                         Travell.com
@@ -104,7 +104,7 @@ const NavMenu = () => {
                             </span>
                             <span
                                 className="hero-search relative select-none"
-                                ref={popupRef}
+                                ref={dateOpen}
                             >
                                 <div
                                     className="w-full flex gap-2"
@@ -128,13 +128,13 @@ const NavMenu = () => {
                                         moveRangeOnFirstSelection={false}
                                         ranges={date}
                                         minDate={new Date()}
-                                        className=" absolute top-12 left-0"
+                                        className="absolute top-12 left-0"
                                     />
                                 )}
                             </span>
                             <span
                                 className="hero-search select-none relative"
-                                ref={popupRef2}
+                                ref={optionOpen}
                             >
                                 <div
                                     className="flex w-full gap-2"
@@ -148,7 +148,7 @@ const NavMenu = () => {
                                     </p>
                                 </div>
                                 {openOptions && (
-                                    <div className="absolute top-12 left-0 w-full bg-white">
+                                    <div className="absolute top-12 left-0 w-full bg-white px-5">
                                         <div className="flex items-center justify-between mb-5">
                                             <h4>Adault: </h4>
                                             <div className="flex gap-5 items-center">
